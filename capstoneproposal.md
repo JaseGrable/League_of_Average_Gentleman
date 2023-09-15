@@ -17,6 +17,7 @@ What tools, frameworks, libraries, APIs, modules and/or other resources (whateve
 - Sleeper API - will determine endpoints to pull data from Sleeper Fantasy Football application. Will need to continue to read documentation to see what is all possible.
 - React for front end
 - Python for backend
+- Firebase
 
 If you finish developing the minimum viable product (MVP) with time to spare, what will you work on next? Describe these features here: Be specific.
 
