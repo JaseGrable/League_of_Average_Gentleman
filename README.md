@@ -10,3 +10,7 @@
 
 - 6 am, Create Sample project with React
 - 7 am, Create Sample project with React Native
+
+### Friday, 09/22
+
+- 12 pm - continue building sample project from zerotomastery.com
