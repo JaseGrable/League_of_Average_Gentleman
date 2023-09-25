@@ -16,7 +16,11 @@
 - 12 pm to 3 pm - continue building sample project from zerotomastery.com
   \*Building monsters rolodex.
 
-## Saturday 09/24
+## Sunday 09/24
 
 - 10 pm to 12 am continuing sample project Monsters Rolodex
   \*worked on a single page application that creates a list of Monsters with an API Call.
+
+## Monday 09/25
+
+12 pm to 4 pm - Finished Monsters Rolodex
