@@ -14,3 +14,8 @@
 ### Friday, 09/22
 
 - 12 pm to 3 pm - continue building sample project from zerotomastery.com
+
+## Saturday 09/24
+
+- 10 pm to 12 pm continuing sample project Monsters Rolodex
+  \*worked on a single page application that creates a list of Monsters with an API Call.
