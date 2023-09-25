@@ -14,6 +14,7 @@
 ### Friday, 09/22
 
 - 12 pm to 3 pm - continue building sample project from zerotomastery.com
+  \*Building monsters rolodex.
 
 ## Saturday 09/24
 
