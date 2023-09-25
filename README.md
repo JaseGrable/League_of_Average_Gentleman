@@ -13,4 +13,4 @@
 
 ### Friday, 09/22
 
-- 12 pm - continue building sample project from zerotomastery.com
+- 12 pm to 3 pm - continue building sample project from zerotomastery.com
