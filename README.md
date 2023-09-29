@@ -26,3 +26,5 @@
 12 pm to 4 pm - Finished Monsters Rolodex
 
 \_
+
+![diagram](LeagueOfAverage.drawio.png)
