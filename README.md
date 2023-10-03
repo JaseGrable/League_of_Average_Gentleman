@@ -28,3 +28,7 @@
 \_
 
 ![diagram](LeagueOfAverage.drawio.png)
+
+# 10/03
+
+WIP Sleeper API
