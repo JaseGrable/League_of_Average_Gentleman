@@ -1,4 +1,3 @@
-// ContactInfo.js
 import React from 'react';
 
 const ContactInfo = () => {
@@ -20,7 +19,7 @@ const ContactInfo = () => {
           </a>
         </li>
         <li>
-          <a href="jase.grable@gmail.com">
+          <a href="mailto:jase.grable@gmail.com">
             Email
           </a>
         </li>
