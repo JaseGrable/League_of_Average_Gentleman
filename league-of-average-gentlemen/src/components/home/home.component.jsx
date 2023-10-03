@@ -7,9 +7,7 @@ const Home = () => {
       <div>
         <LeagueData leagueID="917997436273356800">
         </LeagueData>
-        <Matchups>
-            
-        </Matchups>
+        <Matchups leagueID="917997436273356800" week={5} />
       </div>
     );
   };
