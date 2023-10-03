@@ -1,13 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AboutComponent from './components/about/about.component';
 
 function App() {
   return (
-    <div className="App">
-      {/* Other components or content can go here */}
-      <AboutComponent />
-      {/* Other components or content can go here */}
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/about" component={AboutComponent} /> {/* Include the AboutComponent */}
+          <Route path="/contact" component={ContactInfo} />
+          <Route component={NotFound} /> {/* Fallback for unmatched routes */}
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
