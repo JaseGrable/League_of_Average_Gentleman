@@ -34,13 +34,6 @@ const Matchups = ({ leagueID, week, leagueDTO }) => {
               </li>
             ))}
           </ul>
-          {leagueDTO && (
-            <div>
-              <h3>League Information</h3>
-              <p>League ID: {leagueDTO.leagueId}</p>
-              <p>Total Rosters: {leagueDTO.totalRosters}</p>
-            </div>
-          )}
         </div>
       ) : (
         <p>Loading matchups data...</p>
