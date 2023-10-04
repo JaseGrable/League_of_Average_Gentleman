@@ -21,6 +21,26 @@ class LeagueDTO {
       this.scoringSettings = scoringSettings;
     }
   
+    static async fetchLeagueData(leagueId) {
+      try {
+        const endpoint = `https://api.sleeper.app/v1/leagues/${leagueId}`;
+        const response = await fetch(endpoint);
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+        const leagueData = await response.json();
+  
+        // Map the league data using the LeagueDTO class
+        const leagueDTO = LeagueDTO.fromSleeper(leagueData);
+  
+        // Return the mapped data
+        return leagueDTO;
+      } catch (error) {
+        console.error('Error fetching league data:', error);
+        throw error;
+      }
+    }
+  
     static fromSleeper(apiData) {
       return new LeagueDTO(
         apiData.roster_positions,

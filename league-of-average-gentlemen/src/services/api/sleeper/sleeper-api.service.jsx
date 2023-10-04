@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import SleeperApiConfig from './sleeper-api-config.service';
-import leagueDTO from '../../../../league-data-league-DTO';
+import LeagueDTO from '../../../../league-data-league-DTO';
 
 const SleeperApiService = () => {
   const apiConfig = SleeperApiConfig();
@@ -24,10 +23,11 @@ const SleeperApiService = () => {
   };
 
   const getSleeperLeagueByLeagueId = async (leagueId) => {
-    const endpoint = `${apiConfig.getSleeperLeagueEndpoint}${leagueId}`;
-    const league = await fetchData(endpoint);
-
-      const leagueDTO = new leagueDTO().fromSleeper(
+    try {
+      const endpoint = `${apiConfig.getSleeperLeagueEndpoint}${leagueId}`;
+      const league = await fetchData(endpoint);
+  
+      const leagueDTO = new LeagueDTO().fromSleeper(
         league.roster_positions,
         league.league_id,
         league.total_rosters,
@@ -39,7 +39,7 @@ const SleeperApiService = () => {
         league.settings,
         league.scoring_settings,
       );
-
+  
       return leagueDTO;
     } catch (error) {
       console.error('Error fetching sleeper league:', error);
@@ -53,6 +53,6 @@ const SleeperApiService = () => {
     getSleeperLeagueByLeagueId,
 
   };
-
+}
 
 export default SleeperApiService

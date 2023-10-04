@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import LeagueDTO from '../league-data/league-DTO';
 
 const Matchups = ({ leagueID, week, leagueDTO }) => {
   const [matchupsData, setMatchupsData] = useState(null);
@@ -29,19 +30,15 @@ const Matchups = ({ leagueID, week, leagueDTO }) => {
           <ul>
             {matchupsData.map((matchup) => (
               <li key={matchup.matchup_id}>
-                {/* Display matchup information as needed */}
-                {/* Example: Team {matchup.roster_id} vs. Team {matchup.opponent_roster_id} */}
-                <p>Team {matchup.roster_id} vs. Team {matchup.opponent_roster_id}</p>
+                <p>Team {matchup.roster_id} vs. Team {matchup.roster_id}</p>
               </li>
             ))}
           </ul>
           {leagueDTO && (
             <div>
-              {/* Use leagueDTO data here */}
               <h3>League Information</h3>
               <p>League ID: {leagueDTO.leagueId}</p>
               <p>Total Rosters: {leagueDTO.totalRosters}</p>
-              {/* Add more leagueDTO properties as needed */}
             </div>
           )}
         </div>
