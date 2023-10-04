@@ -5,9 +5,6 @@ const Matchups = ({ leagueID, week }) => {
   const apiUrl = `https://api.sleeper.app/v1/league/${leagueID}/matchups/${week}`;
 
   useEffect(() => {
-    // Fetch the matchups data when the component mounts
-    fetchMatchups();
-
     async function fetchMatchups() {
       try {
         const response = await fetch(apiUrl);
@@ -19,6 +16,8 @@ const Matchups = ({ leagueID, week }) => {
         console.error('Error fetching matchups data:', error);
       }
     }
+
+    fetchMatchups();
   }, [apiUrl]);
 
   return (
