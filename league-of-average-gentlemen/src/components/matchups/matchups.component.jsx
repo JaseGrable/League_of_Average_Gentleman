@@ -60,4 +60,3 @@ const Matchups = ({ leagueID, week }) => {
 
 export default Matchups;
 
-
