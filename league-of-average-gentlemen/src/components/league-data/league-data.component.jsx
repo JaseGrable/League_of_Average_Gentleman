@@ -1,32 +1,47 @@
-import { useEffect, useState } from 'react';
-import SleeperApiService from '../../services/api/sleeper/sleeper-api.service';
+import { useState, useEffect } from 'react';
 
-const LeagueData = ({ leagueID }) => {
-  const [leagueInfo, setLeagueInfo] = useState(null);
+const LeagueData = ({ leagueID, welcomeMessage }) => {
+  const [leagueData, setLeagueData] = useState(null);
+  const [users, setUsers] = useState([]);
+  const apiUrl = `https://api.sleeper.app/v1/league/${leagueID}`;
 
   useEffect(() => {
-    async function fetchLeagueData() {
-      try {
-        const apiService = new SleeperApiService();
-        const leagueData = await apiService.getSleeperLeagueByLeagueId(leagueID);
-        setLeagueInfo(leagueData);
-      } catch (error) {
-        console.error('Error fetching league data:', error);
-      }
-    }
+    if (leagueID) {
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          setLeagueData(data);
 
-    fetchLeagueData();
-  }, [leagueID]);
+          
+          fetch(`${apiUrl}/users`)
+            .then((response) => response.json())
+            .then((userData) => setUsers(userData))
+            .catch((error) =>
+              console.error('Error fetching user data:', error)
+            );
+        })
+        .catch((error) => console.error('Error fetching league data:', error));
+    }
+  }, [leagueID, apiUrl]);
 
   return (
     <div>
-      {LeagueData ? (
+      <h2>{welcomeMessage}</h2>
+      {leagueData && (
         <div>
           <h3>League Information</h3>
-          <p>League Name: {leagueID.name}</p>
+          <p>League Name: {leagueData.name}</p>
         </div>
-      ) : (
-        <p>Loading league information...</p>
+      )}
+      {users.length > 0 && (
+        <div>
+          <h3>List of Users in the League</h3>
+          <ul>
+            {users.map((user) => (
+              <li key={user.user_id}>{user.display_name}</li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );

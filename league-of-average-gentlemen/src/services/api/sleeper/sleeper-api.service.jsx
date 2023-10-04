@@ -1,24 +1,31 @@
 import { useEffect, useState } from 'react';
 import SleeperApiConfig from './sleeper-api-config.service';
+import leagueDTO from '../../../../league-data-league-DTO';
 
 const SleeperApiService = () => {
-  const [apiConfig] = useState(SleeperApiConfig());
+  const apiConfig = SleeperApiConfig();
+
+  const fetchData = async (endpoint) => {
+    const response = await fetch(endpoint);
+    if (!response.ok) {
+      throw new Error(`HTTP Error: ${response.status}`);
+    }
+    return response.json();
+  };
 
   const getSleeperUserInformation = (userName) => {
-    const endpoint = apiConfig.getSleeperUsernameEndpoint + userName;
-    return fetch(endpoint).then((response) => response.json());
+    const endpoint = `${apiConfig.getSleeperUsernameEndpoint}${userName}`;
+    return fetchData(endpoint);
   };
 
   const getSleeperLeaguesByUserID = (userId, year) => {
     const endpoint = `${apiConfig.getSleeperUsernameEndpoint}${userId}/leagues/nfl/${year}`;
-    return fetch(endpoint).then((response) => response.json());
+    return fetchData(endpoint);
   };
 
   const getSleeperLeagueByLeagueId = async (leagueId) => {
-    try {
-      const endpoint = `${apiConfig.getSleeperLeagueEndpoint}${leagueId}`;
-      const response = await fetch(endpoint);
-      const league = await response.json();
+    const endpoint = `${apiConfig.getSleeperLeagueEndpoint}${leagueId}`;
+    const league = await fetchData(endpoint);
 
       const leagueDTO = new leagueDTO().fromSleeper(
         league.roster_positions,
@@ -46,6 +53,6 @@ const SleeperApiService = () => {
     getSleeperLeagueByLeagueId,
 
   };
-};
+
 
 export default SleeperApiService
