@@ -11,6 +11,7 @@ const Matchups = ({ leagueID, week }) => {
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();
+        console.log(data)
 
         // Create a map to store unique matchups based on matchup_id
         const uniqueMatchupsMap = new Map();
@@ -39,10 +40,12 @@ const Matchups = ({ leagueID, week }) => {
         <div>
           <h2>Matchups for Week {week}</h2>
           <ul>
+
             {matchupsDTO.map((matchup) => (
               <li key={matchup.matchup_id}>
+                {console.log(matchup)}
                 <p>
-                  Team {matchup.roster_id} vs. Team {matchup.opponent_roster_id}
+                  Team {matchup.roster_id} vs. Team {matchup.roster_id}
                 </p>
               </li>
             ))}
