@@ -31,4 +31,9 @@
 
 # 10/03
 
-WIP Sleeper API
+Continue research plans for Sleeper API endpoints
+
+# 10/04
+
+9-11PM
+Map Sleeper API endpoints, research firebase
