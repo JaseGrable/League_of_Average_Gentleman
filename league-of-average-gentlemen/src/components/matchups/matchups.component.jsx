@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useCurrentWeek } from '../current-week-provider/current-week-provider';
 
-const Matchups = ({ leagueID, week }) => {
+const Matchups = ({ leagueID }) => {
   const [matchupsDTO, setMatchupsDTO] = useState(null);
-  const apiUrl = `https://api.sleeper.app/v1/league/${leagueID}/matchups/${week}`;
+  const currentWeek = useCurrentWeek(); // Use the hook to get the current week
+  const apiUrl = `https://api.sleeper.app/v1/league/${leagueID}/matchups/${currentWeek}`;
 
   useEffect(() => {
     fetchMatchups();
@@ -11,7 +13,7 @@ const Matchups = ({ leagueID, week }) => {
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();
-        
+        console.log(data);
 
         // Create a map to store unique matchups based on matchup_id
         const uniqueMatchupsMap = new Map();
@@ -36,13 +38,13 @@ const Matchups = ({ leagueID, week }) => {
         console.error('Error fetching matchups data:', error);
       }
     }
-  }, [apiUrl]);
+  }, [apiUrl, currentWeek]); // Include currentWeek in the dependency array
 
   return (
     <div>
       {matchupsDTO ? (
         <div>
-          <h2>Matchups for Week {week}</h2>
+          <h2>Matchups for Week {currentWeek}</h2> {/* Display the current week */}
           <ul>
             {matchupsDTO.map((matchupPair, index) => (
               <li key={index}>
@@ -65,4 +67,3 @@ const Matchups = ({ leagueID, week }) => {
 };
 
 export default Matchups;
-
