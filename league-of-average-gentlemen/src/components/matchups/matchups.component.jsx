@@ -11,16 +11,20 @@ const Matchups = ({ leagueID, week }) => {
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();
-        console.log(data)
+        
 
         // Create a map to store unique matchups based on matchup_id
         const uniqueMatchupsMap = new Map();
 
         // Iterate through matchups and store them in the map
         data.forEach((matchup) => {
-          if (!uniqueMatchupsMap.has(matchup.matchup_id)) {
-            uniqueMatchupsMap.set(matchup.matchup_id, matchup);
+          const matchupId = matchup.matchup_id;
+
+          if (!uniqueMatchupsMap.has(matchupId)) {
+            uniqueMatchupsMap.set(matchupId, []);
           }
+
+          uniqueMatchupsMap.get(matchupId).push(matchup);
         });
 
         // Convert the map values back to an array
@@ -40,13 +44,15 @@ const Matchups = ({ leagueID, week }) => {
         <div>
           <h2>Matchups for Week {week}</h2>
           <ul>
-
-            {matchupsDTO.map((matchup) => (
-              <li key={matchup.matchup_id}>
-                {console.log(matchup)}
-                <p>
-                  Team {matchup.roster_id} vs. Team {matchup.roster_id}
-                </p>
+            {matchupsDTO.map((matchupPair, index) => (
+              <li key={index}>
+                {matchupPair[0] && matchupPair[1] ? (
+                  <p>
+                    Team {matchupPair[0].roster_id} vs. Team {matchupPair[1].roster_id}
+                  </p>
+                ) : (
+                  <p>Invalid matchup data</p>
+                )}
               </li>
             ))}
           </ul>
