@@ -37,3 +37,7 @@ Continue research plans for Sleeper API endpoints
 
 9-11PM
 Map Sleeper API endpoints, research firebase
+
+# 10/05
+
+Testing more sleeper endpoints in postman
