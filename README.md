@@ -1,43 +1,40 @@
-### Research & Planning Log
+# Research & Planning Log
 
-#### Friday, 09/15
+## Friday, 09/15
 
-- 2:00 pm, Research Sleeper Fantasy Football API
-- 3:00 pm, Still reading trough API documentation
-- 4:00 pm, watch React videos Zerotomastery.com
+- **2:00 pm:** Research Sleeper Fantasy Football API.
+- **3:00 pm:** Continue reading through API documentation.
+- **4:00 pm:** Watch React videos on Zerotomastery.com.
 
-### Monday, 09/18
+## Monday, 09/18
 
-- 6 am, Create Sample project with React
-- 7 am, Create Sample project with React Native
+- **6:00 am:** Create a sample project with React.
+- **7:00 am:** Create a sample project with React Native.
 
-### Friday, 09/22
+## Friday, 09/22
 
-- 12 pm to 3 pm - continue building sample project from zerotomastery.com
-  \*Building monsters rolodex.
+- **12:00 pm - 3:00 pm:** Continue building a sample project from Zerotomastery.com.
+  - Building a monsters rolodex.
 
-## Sunday 09/24
+## Sunday, 09/24
 
-- 10 pm to 12 am continuing sample project Monsters Rolodex
-  \*worked on a single page application that creates a list of Monsters with an API Call.
+- **10:00 pm - 12:00 am:** Continue working on the sample project Monsters Rolodex.
+  - Worked on a single-page application that creates a list of monsters with an API call.
 
-## Monday 09/25
+## Monday, 09/25
 
-12 pm to 4 pm - Finished Monsters Rolodex
+- **12:00 pm - 4:00 pm:** Finished Monsters Rolodex.
 
-\_
+## 10/03
 
-![diagram](LeagueOfAverage.drawio.png)
+- Continue research plans for Sleeper API endpoints.
 
-# 10/03
+## 10/04
 
-Continue research plans for Sleeper API endpoints
+- **9:00 pm - 11:00 pm:** Map Sleeper API endpoints and research Firebase.
 
-# 10/04
+## 10/05
 
-9-11PM
-Map Sleeper API endpoints, research firebase
+- Testing more Sleeper endpoints in Postman.
 
-# 10/05
-
-Testing more sleeper endpoints in postman
+![Diagram](LeagueOfAverage.drawio.png)
