@@ -38,6 +38,8 @@
 
 - Testing more Sleeper endpoints in Postman.
 
+### Planning Diagram
+
 ![Diagram](LeagueOfAverage.drawio.png)
 
 </details>
