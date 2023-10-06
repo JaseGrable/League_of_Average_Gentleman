@@ -28,7 +28,7 @@ const LeagueData = ({ leagueID, welcomeMessage }) => {
   // Function to get team name by user_id
   const getTeamName = (userId) => {
     const user = users.find((user) => user.user_id === userId);
-    return user ? user.metadata.team_name : 'Unknown Team';
+    return user ? user.metadata.team_name || 'Unknown Team' : 'Unknown Team';
   };
 
   return (
@@ -42,7 +42,7 @@ const LeagueData = ({ leagueID, welcomeMessage }) => {
       )}
       {users.length > 0 && (
         <div>
-          <h3>List of User Teams in the League</h3>
+          <h3>List of Users in the League</h3>
           <ul>
             {users.map((user) => (
               <li key={user.user_id}>
@@ -57,5 +57,4 @@ const LeagueData = ({ leagueID, welcomeMessage }) => {
 };
 
 export default LeagueData;
-  
   
