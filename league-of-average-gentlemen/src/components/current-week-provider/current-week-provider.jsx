@@ -11,9 +11,9 @@ export const CurrentWeekProvider = ({ children }) => {
     // Fetch the current week from your API here and set it in setCurrentWeek
     async function fetchCurrentWeek() {
       try {
-        const response = await fetch('https://api.sleeper.app/v1/state/nfl'); // Replace with your API URL
+        const response = await fetch('https://api.sleeper.app/v1/state/nfl');
         const data = await response.json();
-        setCurrentWeek(data.week); // Assuming 'data.week' contains the current week
+        setCurrentWeek(data.week); 
       } catch (error) {
         console.error('Error fetching current week:', error);
       }
