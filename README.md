@@ -1,4 +1,29 @@
 <details>
+<Summary> Application Description </Summary>
+
+# League of Average Gentlemen
+
+#### An in progress website for my fantasy football league.
+
+#### By Jase Grable
+
+## Technologies Used
+
+- Git
+- JavaScript
+- React
+- HTML & CSS
+
+## Description
+
+This is a React web application. We are a group of friends (and Jordan) who believe like many others in America, that we are football experts. In fact, we may just be average fans. This application was inspired by dynasty-daddy.com. I wanted to make a league website that utilizes the Sleeper API app, as well as scrapes Keep Trade Cut Values from the web.
+
+This information will likely not make any of us better at fantasy football, but it will give me something other to blame than myself. Stupid Stats, they lie.
+I am using this project to work on my full stack skills and will likely add additional functionality in the future.
+
+</details>
+
+<details>
 <summary>Research & Planning Log</summary>
 
 ### Friday, 09/15
@@ -83,3 +108,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However, we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 </details>
+
+## License
+
+[MIT](LICENSE.txt)
