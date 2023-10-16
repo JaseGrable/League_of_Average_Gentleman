@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useCurrentWeek } from '../current-week-provider/current-week-provider';
 
 function LeagueData() {
   const [leagueData, setLeagueData] = useState([]);

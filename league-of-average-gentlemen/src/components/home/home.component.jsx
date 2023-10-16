@@ -8,7 +8,7 @@ const Home = () => {
     <React.Fragment>
       <CurrentWeekProvider>
         <div>
-          <LeagueData leagueID="917997436273356800" />
+          <LeagueData/>
           <Matchups leagueID="917997436273356800" week={CurrentWeekProvider} />
         </div>
       </CurrentWeekProvider>
