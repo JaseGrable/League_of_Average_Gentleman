@@ -39,3 +39,4 @@ export const useCurrentWeek = () => {
 };
 
 
+export default CurrentWeekProvider

@@ -1,18 +1,22 @@
 import React from 'react';
 import LeagueData from '../league-data/league-data.component';
-import Matchups from '../matchups/matchups.component';
 import { CurrentWeekProvider } from '../current-week-provider/current-week-provider';
 
 const Home = () => {
   return (
-    <React.Fragment>
-      <CurrentWeekProvider>
-        <div>
-          <LeagueData/>
-          <Matchups leagueID="917997436273356800" week={CurrentWeekProvider} />
+    <CurrentWeekProvider>
+      <div style={{ display: 'flex' }}>
+        {/* Sidebar */}
+        <div style={{ flex: '0 0 250px', background: '#f2f2f2', padding: '20px' }}>
+          <LeagueData />
         </div>
-      </CurrentWeekProvider>
-    </React.Fragment>
+
+        {/* Main content */}
+        <div style={{ flex: 1, padding: '20px' }}>
+          {/* Your main content here */}
+        </div>
+      </div>
+    </CurrentWeekProvider>
   );
 };
 
