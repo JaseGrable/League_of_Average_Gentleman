@@ -4,11 +4,15 @@ import { useCurrentWeek } from '../current-week-provider/current-week-provider';
 
 function LeagueData() {
   const currentWeek = useCurrentWeek();
-  const [leagueData, setLeagueData] = useState({ leagueName: '', standings: [], matchups: [] });
+  const [leagueData, setLeagueData] = useState({ standings: [], users: [], matchups: [] });
 
   useEffect(() => {
     // Fetch league data, standings, and matchups
-    Promise.all([fetchLeagueData(), fetchStandings(), fetchMatchups(currentWeek)]);
+    Promise.all([
+      fetchLeagueData(),
+      fetchStandings(),
+      fetchMatchups(currentWeek),
+    ]);
   }, [currentWeek]);
 
   // Function to fetch league data
@@ -17,7 +21,7 @@ function LeagueData() {
       const response = await axios.get(`/api/league/917997436273356800`);
       setLeagueData((prevData) => ({
         ...prevData,
-        leagueName: response.data.name,
+        users: response.data.users,
       }));
     } catch (error) {
       console.error('Error fetching league data:', error);
@@ -27,10 +31,12 @@ function LeagueData() {
   // Function to fetch standings data
   async function fetchStandings() {
     try {
-      const response = await axios.get(`/api/league/917997436273356800`);
+      const leagueResponse = await axios.get(`/api/league/917997436273356800`);
+      const standings = leagueResponse.data.standings;
+
       setLeagueData((prevData) => ({
         ...prevData,
-        standings: response.data.standings,
+        standings,
       }));
     } catch (error) {
       console.error('Error fetching standings data:', error);
@@ -41,11 +47,11 @@ function LeagueData() {
   async function fetchMatchups(week) {
     try {
       const response = await axios.get(`/api/league/917997436273356800/matchups/current_week`);
-      const matchups = organizeMatchups(response.data);
+      const matchups = organizeMatchups(response.data, leagueData.users);
 
       setLeagueData((prevData) => ({
         ...prevData,
-        matchups: matchups,
+        matchups,
       }));
     } catch (error) {
       console.error('Error fetching matchups data:', error);
@@ -53,22 +59,38 @@ function LeagueData() {
   }
 
   // Function to organize matchups data
-  function organizeMatchups(data) {
-    const matchupsMap = new Map();
+  function organizeMatchups(data, users) {
+    const matchupsByUser = {};
 
     data.forEach((matchup) => {
-      const matchupId = matchup.matchup_id;
+      const owner_id = matchup.owner_id;
 
-      if (!matchupsMap.has(matchupId)) {
-        matchupsMap.set(matchupId, []);
+      // Initialize the user's matchups array
+      if (!matchupsByUser[owner_id]) {
+        matchupsByUser[owner_id] = {
+          owner_id,
+          username: getUserNameFromUserId(owner_id, users),
+          matchups: [],
+        };
       }
 
-      matchupsMap.get(matchupId).push(matchup);
+      matchupsByUser[owner_id].matchups.push({
+        roster_id: matchup.roster_id,
+        starters: matchup.starters,
+        points: matchup.points,
+      });
     });
 
-    const matchupsArray = Array.from(matchupsMap.values());
+    // Convert the object of matchups by user into an array
+    const matchupsArray = Object.values(matchupsByUser);
 
     return matchupsArray;
+  }
+
+  // Function to get username from user_id
+  function getUserNameFromUserId(user_id, users) {
+    const user = users.find((user) => user.user_id === user_id);
+    return user ? user.username : 'Unknown User';
   }
 
   // Log the league name once it's set
@@ -103,7 +125,7 @@ function LeagueData() {
           {leagueData.matchups.map((matchupPair, index) => (
             <li key={index}>
               <strong>Matchup {index + 1}:</strong>
-              {matchupPair.map((matchup) => (
+              {matchupPair.matchups.map((matchup) => (
                 <div key={matchup.roster_id}>
                   <p>
                     <strong>Roster ID:</strong> {matchup.roster_id},{' '}
@@ -123,6 +145,15 @@ function LeagueData() {
 }
 
 export default LeagueData;
+
+
+
+
+
+
+
+
+
 
 
 

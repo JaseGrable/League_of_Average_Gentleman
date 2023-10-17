@@ -1,4 +1,5 @@
 from sleeper_wrapper import League
+from sleeper_wrapper import User
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -19,6 +20,38 @@ def calculate_current_week():
     # This might involve fetching data from your data source or another method
     current_week = 1  # Replace with the actual current week
     return current_week
+
+# This is a new route to fetch roster data
+
+
+@app.route('/api/league/<string:league_id>/rosters', methods=['GET'])
+def get_roster_data(league_id):
+    try:
+        # Initialize the League object with the provided league_id
+        league = League(league_id)
+
+        # Fetch the rosters data
+        rosters = league.get_rosters()
+
+        # Fetch the users data for mapping owner_id to user_id
+        users = league.get_users()
+
+        # Create a list to store the roster data with user_id
+        roster_data = []
+        for roster in rosters:
+            owner_id = roster.owner_id
+            user = next(
+                (user for user in users if user.user_id == owner_id), None)
+            user_id = user.user_id if user else None
+            roster_data.append({
+                'roster_id': roster.roster_id,
+                'user_id': user_id,
+            })
+
+        return jsonify(roster_data)
+    except Exception as e:
+        # Return an error response with status code 500
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/api/league/<string:league_id>', methods=['GET'])
